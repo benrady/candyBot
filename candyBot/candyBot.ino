@@ -49,11 +49,9 @@ void setup() {
 void playFanfare() {
    // iterate over the notes of the melody:
   for (int thisNote = 0; thisNote < 29; thisNote++) {
-
-    // to calculate the note duration, take one second 
-    // divided by the note type.
-    //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
-    if (noteDurations[thisNote]) {
+    if (noteDurations[thisNote] == REST) {
+      delay(1000/16);
+    } else {
       int noteDuration = 1000/noteDurations[thisNote];
       tone(8, melody[thisNote],noteDuration);
   
@@ -61,10 +59,26 @@ void playFanfare() {
       // the note's duration + 30% seems to work well:
       int pauseBetweenNotes = noteDuration;
       delay(pauseBetweenNotes);
-    } else {
-      delay(1000/16);
     }
     // stop the tone playing:
+    noTone(8);
+  }
+}
+
+void playGame() {
+  int time = 30;
+  boolean candy = false;
+  while (time < 2000 || !candy) {
+    time = time + (time / 10);
+    if (candy) {
+      digitalWrite(ledPin, HIGH);
+      tone(8, NOTE_E5, 250);
+    } else {
+      tone(8, NOTE_G5, 250);
+    }
+    candy = !candy;    
+    delay(time);
+    digitalWrite(ledPin, LOW); 
     noTone(8);
   }
 }
@@ -80,10 +94,9 @@ void loop(){
     digitalWrite(ledPin, LOW); 
   } 
   else {
-    // turn LED on:    
-    digitalWrite(ledPin, HIGH);  
-    // Dispense Candy
+    playGame();        
     playFanfare();
+    // Dispense Candy
   }
 }
 
