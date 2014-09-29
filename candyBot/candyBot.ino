@@ -1,21 +1,4 @@
-/*
-  Melody
- 
- Plays a melody 
- 
- circuit:
- * 8-ohm speaker on digital pin 8
- 
- created 21 Jan 2010
- modified 30 Aug 2011
- by Tom Igoe 
-
-This example code is in the public domain.
- 
- http://arduino.cc/en/Tutorial/Tone
- 
- */
- #include "pitches.h"
+#include "pitches.h"
 const int REST = 0;
 
 // notes in the melody:
@@ -32,18 +15,20 @@ int noteDurations[] = {
   8,8,8, 8,8,8, 3,8,8,8,1 
 };
 
-const int buttonPin = 2;     // the number of the pushbutton pin
-const int ledPin =  13;      // the number of the LED pin
+const int buttonPin = 2;     
+const int deathLedPin =  12;      
+const int candyLedPin =  11;      
 
 // variables will change:
 int buttonState = 0;         // variable for reading the pushbutton status
 
 void setup() {
   // initialize the LED pin as an output:
-  pinMode(ledPin, OUTPUT);      
+  pinMode(deathLedPin, OUTPUT);
+  pinMode(candyLedPin, OUTPUT);  
   // initialize the pushbutton pin as an input:
   pinMode(buttonPin, INPUT);    
-  pinMode(buttonPin, INPUT_PULLUP); 
+  delay(1000); // Wait for button levels to normalize? I have no idea what I'm doing.
 }
 
 void playFanfare() {
@@ -68,30 +53,32 @@ void playFanfare() {
 void playGame() {
   int time = 30;
   boolean candy = false;
-  while (time < 2000 || !candy) {
+  while (time < 1500 || !candy) {
     time = time + (time / 10);
     if (candy) {
-      digitalWrite(ledPin, HIGH);
+      digitalWrite(deathLedPin, HIGH);
       tone(8, NOTE_E5, 250);
     } else {
+      digitalWrite(candyLedPin, HIGH); 
       tone(8, NOTE_G5, 250);
     }
     candy = !candy;    
     delay(time);
-    digitalWrite(ledPin, LOW); 
+    digitalWrite(deathLedPin, LOW); 
+    digitalWrite(candyLedPin, LOW);
     noTone(8);
   }
+  digitalWrite(candyLedPin, HIGH);
 }
 
 void loop(){
   // read the state of the pushbutton value:
   buttonState = digitalRead(buttonPin);
 
-  // check if the pushbutton is pressed.
-  // if it is, the buttonState is HIGH:
   if (buttonState == HIGH) {     
     // turn LED off:
-    digitalWrite(ledPin, LOW); 
+    digitalWrite(deathLedPin, LOW); 
+    digitalWrite(candyLedPin, LOW); 
   } 
   else {
     playGame();        
