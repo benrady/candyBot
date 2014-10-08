@@ -93,7 +93,7 @@ void playGame() {
 
 
 void dispenseCandy() {
-  myMotor->step(200, FORWARD, DOUBLE);
+  myMotor->step(200, BACKWARD, DOUBLE);
   myMotor->release(); 
 }
 
