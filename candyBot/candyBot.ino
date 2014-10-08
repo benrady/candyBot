@@ -24,14 +24,8 @@ const int deathLedPin =  5;
 const int candyLedPin =  6;
 const int speakerPin =  7;
 
-// variables will change:
-int buttonState = 0;         // variable for reading the pushbutton status
-
 // Create the motor shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
-
-// Or, create it with a different I2C address (say for stacking)
-// Adafruit_MotorShield AFMS = Adafruit_MotorShield(0x61); 
 
 // Connect a stepper motor with 200 steps per revolution (1.8 degree)
 // to motor port #2 (M3 and M4)
@@ -60,8 +54,6 @@ void playFanfare() {
       int noteDuration = 1000/noteDurations[thisNote];
       tone(speakerPin, melody[thisNote],noteDuration);
   
-      // to distinguish the notes, set a minimum time between them.
-      // the note's duration + 30% seems to work well:
       int pauseBetweenNotes = noteDuration;
       delay(pauseBetweenNotes);
     }
@@ -93,14 +85,13 @@ void playGame() {
 
 
 void dispenseCandy() {
-  myMotor->step(200, BACKWARD, DOUBLE);
+  myMotor->step(200, BACKWARD, DOUBLE); // DOUBLE has higher torque
   myMotor->release(); 
 }
 
-
 void loop(){
   // read the state of the pushbutton value:
-  buttonState = digitalRead(buttonPin);
+  int buttonState = digitalRead(buttonPin);
 
   if (buttonState == HIGH) {     
     // turn LED off:
