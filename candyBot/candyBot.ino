@@ -19,10 +19,14 @@ int noteDurations[] = {
   8,8,8, 8,8,8, 3,8,8,8,1 
 };
 
-const int buttonPin = 2;     
+const int buttonPin = 2;
+const int buttonLightPin = 3;
+const int middleLedPin = 4;
 const int deathLedPin =  5;      
 const int candyLedPin =  6;
 const int speakerPin =  7;
+
+boolean testMode = false;
 
 // Create the motor shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
@@ -40,9 +44,12 @@ void setup() {
   // initialize the LED pin as an output:
   pinMode(deathLedPin, OUTPUT);
   pinMode(candyLedPin, OUTPUT);  
+  pinMode(middleLedPin, OUTPUT);  
+  pinMode(buttonLightPin, OUTPUT);
   // initialize the pushbutton pin as an input:
   pinMode(buttonPin, INPUT);    
   delay(1000); // Wait for button levels to normalize? I have no idea what I'm doing.
+  testMode = (digitalRead(buttonPin) == LOW);
 }
 
 void playFanfare() {
@@ -80,28 +87,59 @@ void playGame() {
     digitalWrite(candyLedPin, LOW);
     noTone(speakerPin);
   }
+  digitalWrite(middleLedPin, LOW);
   digitalWrite(candyLedPin, HIGH);
 }
 
 
 void dispenseCandy() {
-  myMotor->step(200, BACKWARD, DOUBLE); // DOUBLE has higher torque
+  myMotor->step(300, BACKWARD, DOUBLE); // DOUBLE has higher torque
   myMotor->release(); 
 }
 
+void buttonPress() {
+  digitalWrite(buttonLightPin, LOW); 
+  playGame();        
+  playFanfare();
+  dispenseCandy();
+}
+
+void lightSequence() {
+  digitalWrite(candyLedPin, HIGH); 
+  delay(1000);
+  digitalWrite(candyLedPin, LOW); 
+  digitalWrite(middleLedPin, HIGH);
+  delay(1000);
+  digitalWrite(middleLedPin, LOW);
+  digitalWrite(deathLedPin, HIGH); 
+  delay(1000);
+  digitalWrite(deathLedPin, LOW); 
+  delay(1000);
+}
+
+void runTest() {
+  lightSequence();
+  for (int i = 0; i < 120; i++) {
+    buttonPress();
+  }
+}
+
 void loop(){
+  if (testMode) {
+    runTest();
+    testMode = false;
+  }
   // read the state of the pushbutton value:
   int buttonState = digitalRead(buttonPin);
 
   if (buttonState == HIGH) {     
-    // turn LED off:
-    digitalWrite(deathLedPin, LOW); 
+    digitalWrite(buttonLightPin, HIGH); 
+    digitalWrite(deathLedPin, LOW);
+    digitalWrite(middleLedPin, LOW);
     digitalWrite(candyLedPin, LOW); 
   } 
   else {
-    playGame();        
-    playFanfare();
-    dispenseCandy();
+    buttonPress();
   }
 }
 
