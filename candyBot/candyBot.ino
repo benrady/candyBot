@@ -71,17 +71,17 @@ void playFanfare() {
 
 void playGame() {
   int time = 30;
-  boolean candy = false;
-  while (time < 1500 || !candy) {
+  boolean death = false;
+  while (time < 1500 || !death) {
     time = time + (time / 10);
-    if (candy) {
+    if (death) {
       digitalWrite(deathLedPin, HIGH);
       tone(speakerPin, NOTE_E5, 250);
     } else {
       digitalWrite(candyLedPin, HIGH); 
       tone(speakerPin, NOTE_G5, 250);
     }
-    candy = !candy;    
+    death = !death;    
     delay(time);
     digitalWrite(deathLedPin, LOW); 
     digitalWrite(candyLedPin, LOW);
