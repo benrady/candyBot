@@ -70,6 +70,7 @@ void playFanfare() {
 }
 
 void playGame() {
+  digitalWrite(middleLedPin, HIGH);
   int time = 30;
   boolean death = false;
   while (time < 1500 || !death) {
@@ -88,7 +89,13 @@ void playGame() {
     noTone(speakerPin);
   }
   digitalWrite(middleLedPin, LOW);
-  digitalWrite(candyLedPin, HIGH);
+  for (int i = 0; i < 5; i++) {
+    digitalWrite(candyLedPin, HIGH);
+    tone(speakerPin, NOTE_G5, 250);
+    delay(250);
+    digitalWrite(candyLedPin, LOW);
+    delay(250);
+  }
 }
 
 
