@@ -37,7 +37,6 @@ Adafruit_StepperMotor *myMotor = AFMS.getStepper(200, 2);
 
 void setup() {
   AFMS.begin();  // create with the default frequency 1.6KHz
-  //AFMS.begin(1000);  // OR with a different frequency, say 1KHz
   
   myMotor->setSpeed(10);  // 10 rpm   
   
@@ -98,7 +97,6 @@ void playGame() {
   }
 }
 
-
 void dispenseCandy() {
   myMotor->step(300, BACKWARD, DOUBLE); // DOUBLE has higher torque
   myMotor->release(); 
@@ -107,6 +105,7 @@ void dispenseCandy() {
 void buttonPress() {
   digitalWrite(buttonLightPin, LOW); 
   playGame();        
+  digitalWrite(candyLedPin, HIGH);
   playFanfare();
   dispenseCandy();
 }
