@@ -48,7 +48,7 @@ void setup() {
   pinMode(buttonLightPin, OUTPUT);
   // initialize the pushbutton pin as an input:
   pinMode(buttonPin, INPUT);    
-  delay(1000); // Wait for button levels to normalize? I have no idea what I'm doing.
+  delay(1000); // Wait for button levels to normalize (should have used a pull down resistor instead).
   testMode = (digitalRead(buttonPin) == LOW);
 }
 
