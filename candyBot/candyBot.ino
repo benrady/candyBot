@@ -27,6 +27,7 @@ const int candyLedPin =  6;
 const int speakerPin =  7;
 
 boolean testMode = false;
+boolean turnForward = false;
 
 // Create the motor shield object with the default I2C address
 Adafruit_MotorShield AFMS = Adafruit_MotorShield(); 
@@ -98,8 +99,13 @@ void playGame() {
 }
 
 void dispenseCandy() {
-  myMotor->step(300, BACKWARD, DOUBLE); // DOUBLE has higher torque
+  int direction = BACKWARD;
+  if (turnForward) {
+    direction = FORWARD;  
+  }
+  myMotor->step(533, direction, DOUBLE); // DOUBLE has higher torque
   myMotor->release(); 
+  turnForward = !turnForward;
 }
 
 void buttonPress() {
@@ -130,6 +136,13 @@ void runTest() {
   }
 }
 
+void waitMode() {
+  digitalWrite(buttonLightPin, HIGH); 
+  digitalWrite(deathLedPin, HIGH);
+  digitalWrite(middleLedPin, HIGH);
+  digitalWrite(candyLedPin, HIGH); 
+}
+
 void loop(){
   if (testMode) {
     runTest();
@@ -139,10 +152,7 @@ void loop(){
   int buttonState = digitalRead(buttonPin);
 
   if (buttonState == HIGH) {     
-    digitalWrite(buttonLightPin, HIGH); 
-    digitalWrite(deathLedPin, LOW);
-    digitalWrite(middleLedPin, LOW);
-    digitalWrite(candyLedPin, LOW); 
+    waitMode();
   } 
   else {
     buttonPress();
