@@ -38,9 +38,10 @@ Adafruit_StepperMotor *myMotor = AFMS.getStepper(200, 2);
 
 void setup() {
   AFMS.begin();  // create with the default frequency 1.6KHz
-  
+  Serial.begin(9600);
+
   myMotor->setSpeed(10);  // 10 rpm   
-  
+
   // initialize the LED pin as an output:
   pinMode(deathLedPin, OUTPUT);
   pinMode(candyLedPin, OUTPUT);  
@@ -53,14 +54,15 @@ void setup() {
 }
 
 void playFanfare() {
-   // iterate over the notes of the melody:
+  // iterate over the notes of the melody:
   for (int thisNote = 0; thisNote < 29; thisNote++) {
     if (noteDurations[thisNote] == REST) {
       delay(1000/16);
-    } else {
+    } 
+    else {
       int noteDuration = 1000/noteDurations[thisNote];
       tone(speakerPin, melody[thisNote],noteDuration);
-  
+
       int pauseBetweenNotes = noteDuration;
       delay(pauseBetweenNotes);
     }
@@ -78,7 +80,8 @@ void playGame() {
     if (death) {
       digitalWrite(deathLedPin, HIGH);
       tone(speakerPin, NOTE_E5, 250);
-    } else {
+    } 
+    else {
       digitalWrite(candyLedPin, HIGH); 
       tone(speakerPin, NOTE_G5, 250);
     }
@@ -109,10 +112,12 @@ void dispenseCandy() {
 }
 
 void buttonPress() {
-  digitalWrite(buttonLightPin, LOW); 
-  playGame();        
-  digitalWrite(candyLedPin, HIGH);
-  playFanfare();
+  //digitalWrite(buttonLightPin, LOW); 
+  //playGame();        
+  //digitalWrite(candyLedPin, HIGH);
+  Serial.println("button");
+  //playFanfare();
+  delay(45000);
   dispenseCandy();
 }
 
@@ -158,4 +163,5 @@ void loop(){
     buttonPress();
   }
 }
+
 
