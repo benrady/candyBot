@@ -12,5 +12,12 @@ function animate() {
 
 //setInterval(animate, 10000);
 $(function() {  
+  var ws = new WebSocket('ws://localhost:8080/ws');
+  ws.onclose = function() { 
+    setInterval(function() {  
+      window.location.reload();  
+    }, 1000);
+  }
+  ws.onmessage = animate;
   animate();
 })
