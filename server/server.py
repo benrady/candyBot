@@ -10,6 +10,8 @@ from twisted.internet.serialport import SerialPort
 from autobahn.twisted.websocket import WebSocketServerFactory, WebSocketServerProtocol
 from autobahn.twisted.resource import WebSocketResource
 
+from serial.serialutil import SerialException
+
 sockets = []
 
 class USBclient(Protocol):
@@ -36,5 +38,8 @@ if __name__ == '__main__':
     site = Site(root)
     reactor.listenTCP(8080, site)
     
-    SerialPort(USBclient(), '/dev/ttyACM0', reactor, baudrate='9600')
+    try:
+        SerialPort(USBclient(), '/dev/ttyACM0', reactor, baudrate='9600')
+    except SerialException:
+        print "Could not connect to serial device"
     reactor.run()
