@@ -1,23 +1,22 @@
-function animate() {  
-  d3.select('#candy')
-    .transition().duration(0)
-    .style("fill", "green")
-    .transition().duration(3000)
-    .style("fill", "yellow")
-    .transition().duration(3000)
-    .style("fill", "red")
-    .transition().duration(3000)
-    .style("fill", "green");
-};
+function play() {
+  d3.select('#splash').classed('hidden', true);
+  d3.select('#game').classed('hidden', false);
+}
 
-//setInterval(animate, 10000);
-$(function() {  
+function reset() {
+  d3.select('#splash').classed('hidden', false);
+  d3.select('#game').classed('hidden', true);
+}
+
+window.onready = function() {  
   var ws = new WebSocket('ws://' + window.location.host + '/ws');
   ws.onclose = function() { 
     setInterval(function() {  
       window.location.reload();  
     }, 5000);
   }
-  ws.onmessage = animate;
-  animate();
-})
+  ws.onmessage = function() {
+    play();
+    setTimeout(reset, 60000);
+  }
+};
