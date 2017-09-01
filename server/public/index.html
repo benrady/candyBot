@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css?family=Corben:700|Frijole" rel="stylesheet">
     <style type='text/css' media='all'>
       body { 
+        background: white;
+      }
+      svg { 
         background: black;
       }
       text {
@@ -18,16 +21,16 @@
       .hidden { display: none; }
       .splash-text {
         font-family: 'Frijole', cursive;
-        font-size: 48px;
+        font-size: 44px;
         fill: #f75022;
       }
       .sm-text { font-size: 28px; }
       .md-text { font-size: 96px; }
       .lg-text { font-size: 144px; }
       @keyframes pulse {
-        0%   { transform: translate(530px, 300px) rotate(40deg) scale(1.2); }
-        50%  { transform: translate(530px, 300px) rotate(40deg) scale(1.4); }
-        100% { transform: translate(530px, 300px) rotate(40deg) scale(1.2); }
+        0%   { transform: translate(550px, 400px) rotate(40deg) scale(1.5); }
+        50%  { transform: translate(550px, 400px) rotate(40deg) scale(2); }
+        100% { transform: translate(550px, 400px) rotate(40deg) scale(1.5); }
       }
       #arrow {
         animation: pulse 1s ease-in-out infinite;
@@ -45,9 +48,9 @@
         <text class="splash-text" x='360' y='75'>or</text>
         <text class="splash-text" x='600' y='75'>DEATH!</text>
 
-        <text class="label-text sm-text" x='620' y='250'>Press</text>
-        <text class="label-text sm-text" x='620' y='290'>the button</text>
-        <text class="label-text sm-text" x='620' y='330'>to start</text>
+        <text class="label-text sm-text" x='600' y='300'>Press</text>
+        <text class="label-text sm-text" x='600' y='340'>the button</text>
+        <text class="label-text sm-text" x='600' y='380'>to start</text>
 
         <polyline id='arrow' 
           points='0,10 10,10 10,20 20,20 0,40 -20,20 -10,20 -10,10 0,10'
@@ -59,9 +62,9 @@
           
       </svg>
       <svg id='game' class='hidden'>
-        <rect id='candy' x='0'    y='275' width='640' height='800' fill='#00FF3F'/>
-        <rect id='or'    x='640'  y='275' width='640' height='800' fill='white'/>
-        <rect id='death' x='1280' y='275' width='640' height='800' fill='#FF5641'/>
+        <rect id='candy' x='0'    y='100' width='240' height='375' fill='#00FF3F'/>
+        <rect id='or'    x='240'  y='100' width='240' height='375' fill='white'/>
+        <rect id='death' x='480'  y='100' width='240' height='375' fill='#FF5641'/>
         <ellipse cx='320' cy='575' rx='200' ry='100' fill='green'></ellipse>
         <ellipse cx='1600' cy='575' rx='200' ry='100' fill='#ef0000'></ellipse>
         <text z-index=1000 x='320'  y='600' fill='white'>Candy</text>
