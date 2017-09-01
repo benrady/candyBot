@@ -13,7 +13,7 @@ function buttonPress() {
   setTimeout(reset, 60000);
 }
 
-window.onready = function() {  
+window.onload = function() {  
   var ws = new WebSocket('ws://' + window.location.host + '/ws');
   ws.onclose = function() { 
     setInterval(function() {  

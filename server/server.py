@@ -19,6 +19,7 @@ class USBclient(Protocol):
         print 'Arduino device connected.'
 
     def dataReceived(self, data):
+        print "data received: " + str(data)
         for socket in sockets:
             socket.sendMessage(data);
 
