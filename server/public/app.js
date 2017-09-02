@@ -19,7 +19,7 @@ function fanfare() {
 function buttonPress() {
   play();
   setTimeout(fanfare, 45000);
-  setTimeout(splash, 60000);
+  setTimeout(splash, 65000);
 }
 
 window.onload = function() {  
