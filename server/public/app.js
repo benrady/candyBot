@@ -1,16 +1,25 @@
+function splash() {
+  d3.select('#splash').classed('hidden', false);
+  d3.select('#game').classed('hidden', true);
+  d3.select('#fanfare').classed('hidden', true);
+}
+
 function play() {
   d3.select('#splash').classed('hidden', true);
   d3.select('#game').classed('hidden', false);
+  d3.select('#fanfare').classed('hidden', true);
 }
 
-function reset() {
-  d3.select('#splash').classed('hidden', false);
+function fanfare() {
+  d3.select('#splash').classed('hidden', true);
   d3.select('#game').classed('hidden', true);
+  d3.select('#fanfare').classed('hidden', false);
 }
 
 function buttonPress() {
   play();
-  setTimeout(reset, 60000);
+  setTimeout(fanfare, 45000);
+  setTimeout(splash, 60000);
 }
 
 window.onload = function() {  
