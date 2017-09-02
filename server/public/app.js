@@ -16,7 +16,7 @@ function buttonPress() {
 window.onload = function() {  
   var ws = new WebSocket('ws://' + window.location.host + '/ws');
   ws.onclose = function() { 
-    setInterval(function() {  
+    setTimeout(function() {  
       window.location.reload();  
     }, 5000);
   }

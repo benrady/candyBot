@@ -12,7 +12,7 @@
         background: black;
       }
       text {
-        font-size: 72px;
+        font-size: 48px;
         text-anchor: middle;
       }
       .hidden { display: none; }
@@ -25,9 +25,9 @@
       .md-text { font-size: 96px; }
       .lg-text { font-size: 144px; }
       @keyframes pulse {
-        0%   { transform: translate(550px, 400px) rotate(40deg) scale(1.5); }
-        50%  { transform: translate(550px, 400px) rotate(40deg) scale(2); }
-        100% { transform: translate(550px, 400px) rotate(40deg) scale(1.5); }
+        0%   { transform: translate(380px, 350px) scale(1.5); }
+        50%  { transform: translate(380px, 350px) scale(2); }
+        100% { transform: translate(380px, 350px) scale(1.5); }
       }
       #arrow {
         animation: pulse 1s ease-in-out infinite;
@@ -36,18 +36,23 @@
         font-family: 'Corben', cursive;
         fill: white;
       }
+      img {
+        position: fixed;
+        top: 150px;
+        left: 20px;
+      }
     </style>
   </head>
   <body>
-    <svg width='720' height='475'>
-      <svg id="splash">
+    <div id="splash">
+      <svg width='720' height='475'>
         <text class="splash-text" x='120' y='75'>Candy</text>
         <text class="splash-text" x='360' y='75'>or</text>
         <text class="splash-text" x='600' y='75'>DEATH!</text>
 
-        <text class="label-text sm-text" x='600' y='300'>Press</text>
-        <text class="label-text sm-text" x='600' y='340'>the button</text>
-        <text class="label-text sm-text" x='600' y='380'>to start</text>
+        <text class="label-text sm-text" x='360' y='250'>Press</text>
+        <text class="label-text sm-text" x='360' y='290'>the button</text>
+        <text class="label-text sm-text" x='360' y='330'>to start</text>
 
         <polyline id='arrow' 
               points='0,10 10,10 10,20 20,20 0,40 -20,20 -10,20 -10,10 0,10'
@@ -57,17 +62,23 @@
               >
         </polyline>
 
+        <image xlink:href="images/candy.svg" x='20' y='200' width='200px'/>
+        <image xlink:href="images/skull.svg" x='500' y='200' width='200px'/>
       </svg>
-      <svg id='game' class='hidden'>
+    </div>
+    <div id="game" class='hidden'>
+      <svg width='720' height='475'>
         <rect id='candy' x='0'    y='100' width='240' height='375' fill='#00FF3F'/>
         <rect id='or'    x='240'  y='100' width='240' height='375' fill='white'/>
         <rect id='death' x='480'  y='100' width='240' height='375' fill='#FF5641'/>
-        <ellipse cx='320' cy='575' rx='200' ry='100' fill='green'></ellipse>
-        <ellipse cx='1600' cy='575' rx='200' ry='100' fill='#ef0000'></ellipse>
-        <text z-index=1000 x='320'  y='600' fill='white'>Candy</text>
-        <text z-index=1000 x='960'  y='600' fill='black'>or</text>
-        <text z-index=1000 x='1600' y='600' fill='white'>Death!</text>
+
+        <ellipse cx='120' cy='285' rx='100' ry='50' fill='green'></ellipse>
+        <ellipse cx='600' cy='285' rx='100' ry='50' fill='#ef0000'></ellipse>
+
+        <text z-index=1000 x='120'  y='300' fill='white'>Candy</text>
+        <text z-index=1000 x='360'  y='300' fill='black'>or</text>
+        <text z-index=1000 x='600' y='300' fill='white'>Death!</text>
       </svg>
-    </svg>
+    </div>
   </body>
 </html>
