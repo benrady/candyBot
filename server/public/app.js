@@ -30,4 +30,5 @@ window.onload = function() {
     }, 5000);
   }
   ws.onmessage = buttonPress;
+  splash();
 };
