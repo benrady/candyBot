@@ -117,7 +117,7 @@ void buttonPress() {
   //digitalWrite(candyLedPin, HIGH);
   Serial.println("button");
   //playFanfare();
-  delay(45000);
+  delay(23000);
   dispenseCandy();
 }
 

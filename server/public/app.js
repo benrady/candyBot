@@ -15,7 +15,8 @@ function showGame() {
 }
 
 function fanfare() {
-  showView('fanfare')
+  candy.play();
+  showView('fanfare');
 }
 
 function decreasingSpin() {
