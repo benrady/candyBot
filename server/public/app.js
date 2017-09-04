@@ -44,7 +44,6 @@ function buttonPress() {
   play();
   // Play Sound
   spinStart(); 
-  say("Would you like to play a game?");
   setTimeout(pointerSpin, 3000);
   setTimeout(decreasingSpin, 20000);
   setTimeout(candyPoint, 23000);
