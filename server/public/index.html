@@ -29,12 +29,32 @@
         50%  { transform: translate(390px, 350px) scale(2); }
         100% { transform: translate(390px, 350px) scale(1.5); }
       }
+      @keyframes bounce {
+        0%   { transform: rotate(180deg) translate(0px, 0px); }
+        50% { transform: rotate(180deg) translate(15px, 0px); }
+        100% { transform: rotate(180deg) translate(0px, 0px); }
+      }
       @keyframes colorshift {
         0%   {fill: red;}
         25%  {fill: yellow;}
         50%  {fill: lightblue;}
         75%  {fill: green;}
         100% {fill: red;}
+      }
+      @keyframes decreasing-spin {
+        0%   { -webkit-transform: rotate( 2070deg); }
+        10%  { -webkit-transform: rotate( 6120deg); } 
+        20%  { -webkit-transform: rotate( 9720deg); }
+        30%  { -webkit-transform: rotate(12870deg); }
+        40%  { -webkit-transform: rotate(15570deg); }
+        50%  { -webkit-transform: rotate(17600deg); }
+        60%  { -webkit-transform: rotate(18990deg); }
+        70%  { -webkit-transform: rotate(19800deg); }
+        80%  { -webkit-transform: rotate(20250deg); }
+        90%  { -webkit-transform: rotate(20320deg); }
+        95%  { -webkit-transform: rotate(20330deg); }
+        97%  { -webkit-transform: rotate(20335deg); }
+        100% { -webkit-transform: rotate(20340deg); }
       }
       #arrow {
         animation: pulse 1s ease-in-out infinite;
@@ -45,13 +65,24 @@
       }
       .huge-text {
         font-size: 128px;
-        animation: colorshift 1s ease-in-out infinite;
+        animation: colorshift 1s ease-in infinite;
       }
-      img {
-        position: fixed;
-        top: 150px;
-        left: 20px;
+      #pointer {
+        transform-origin: 50% 50%;
       }
+      .start-point {
+        transform: rotate(270deg);
+      }
+      .spin-start {
+        transform: rotate(270deg);
+      }
+      .candy-point {
+        transform-origin: 50% 50%;
+        transform: rotate(180deg);
+        animation: bounce 1s ease-in-out infinite;
+      }
+      .fast-spin { animation: fast-spin 1s linear infinite; }
+      .decreasing-spin { animation: decreasing-spin 20s linear; }
     </style>
   </head>
   <body>
@@ -85,11 +116,12 @@
 
         <image xlink:href="images/candy.svg" x='20' y='200' width='200px'/>
         <image xlink:href="images/skull.svg" x='500' y='200' width='200px'/>
+        <image id='pointer' class='start-point' xlink:href="images/skeleton.png" x='260' y='220' width='200px'/>
       </svg>
     </div>
     <div id="fanfare" class='hidden'>
       <svg width='720' height='475'>
-        <text class="label-text huge-text" x='360' y='290'>CANDY!</text>
+        <text class="label-text huge-text" x='360' y='290'>CA ND Y!</text>
       </svg>
     </div>
   </body>
