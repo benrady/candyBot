@@ -29,25 +29,25 @@ function candyPoint() {
 
 function spinStart() {
   d3.select('#pointer').attr('class', 'spin-start');
+  spin.play();
 }
 
 function pointerSpin() {
   d3.select('#pointer').attr('class', 'spin-point');
-  spin.play();
 }
 
 function playGame() {
   showView('game');
   spinStart(); 
-  setTimeout(pointerSpin, 3000);
-  setTimeout(decreasingSpin, 21000);
-  setTimeout(candyPoint, 24000);
+  setTimeout(pointerSpin, 6000);
+  setTimeout(decreasingSpin, 18000);
+  setTimeout(candyPoint, 21000);
 }
 
 function buttonPress() {
   playGame();
-  setTimeout(fanfare, 26000);
-  setTimeout(splash, 46000);
+  setTimeout(fanfare, 23000);
+  setTimeout(splash, 43000);
 }
 
 window.onload = function() {  
