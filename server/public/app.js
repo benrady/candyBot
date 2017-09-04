@@ -35,14 +35,19 @@ function spinStart() {
   d3.select('#pointer').attr('class', 'spin-start');
 }
 
+function pointerSpin() {
+  d3.select('#pointer').attr('class', 'spin-point');
+}
+
 function buttonPress() {
   play();
   // Play Sound
   spinStart(); 
-  setTimeout(decreasingSpin, 3000);
+  setTimeout(pointerSpin, 3000);
+  setTimeout(decreasingSpin, 20000);
   setTimeout(candyPoint, 23000);
   setTimeout(fanfare, 25000);
-  setTimeout(splash, 50000);
+  setTimeout(splash, 45000);
 }
 
 window.onload = function() {  
