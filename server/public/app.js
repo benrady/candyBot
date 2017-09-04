@@ -3,22 +3,19 @@ function showView(name) {
     d3.select("#" + id).classed('hidden', id != name);
   })
 }
+
 function splash() {
-  d3.select('#splash').classed('hidden', false);
-  d3.select('#game').classed('hidden', true);
-  d3.select('#fanfare').classed('hidden', true);
+  showView('splash');
 }
 
-function play() {
+function showGame() {
   d3.select('#splash').classed('hidden', true);
   d3.select('#game').classed('hidden', false);
   d3.select('#fanfare').classed('hidden', true);
 }
 
 function fanfare() {
-  d3.select('#splash').classed('hidden', true);
-  d3.select('#game').classed('hidden', true);
-  d3.select('#fanfare').classed('hidden', false);
+  showView('fanfare')
 }
 
 function decreasingSpin() {
@@ -27,7 +24,6 @@ function decreasingSpin() {
 }
 
 function candyPoint() {
-  showView('game');
   d3.select('#pointer').attr('class', 'candy-point')
 }
 
@@ -40,15 +36,18 @@ function pointerSpin() {
   spin.play();
 }
 
-function buttonPress() {
-  play();
-  // Play Sound
+function playGame() {
+  showView('game');
   spinStart(); 
   setTimeout(pointerSpin, 3000);
-  setTimeout(decreasingSpin, 20000);
-  setTimeout(candyPoint, 23000);
-  setTimeout(fanfare, 25000);
-  setTimeout(splash, 45000);
+  setTimeout(decreasingSpin, 21000);
+  setTimeout(candyPoint, 24000);
+}
+
+function buttonPress() {
+  playGame();
+  setTimeout(fanfare, 26000);
+  setTimeout(splash, 46000);
 }
 
 window.onload = function() {  
