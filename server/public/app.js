@@ -37,12 +37,14 @@ function spinStart() {
 
 function pointerSpin() {
   d3.select('#pointer').attr('class', 'spin-point');
+  spin.play();
 }
 
 function buttonPress() {
   play();
   // Play Sound
   spinStart(); 
+  say("Would you like to play a game?");
   setTimeout(pointerSpin, 3000);
   setTimeout(decreasingSpin, 20000);
   setTimeout(candyPoint, 23000);
