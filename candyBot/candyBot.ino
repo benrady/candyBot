@@ -112,11 +112,7 @@ void dispenseCandy() {
 }
 
 void buttonPress() {
-  //digitalWrite(buttonLightPin, LOW); 
-  //playGame();        
-  //digitalWrite(candyLedPin, HIGH);
   Serial.println("button");
-  //playFanfare();
   delay(23000);
   dispenseCandy();
 }
